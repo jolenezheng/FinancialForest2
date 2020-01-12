@@ -2,11 +2,9 @@ const express = require('express');
 const app = express();
 const path = require("path");
 const bodyParser = require('body-parser')
-
-// const express = require('express');
-// const app = express();
 const vision = require('@google-cloud/vision');
 var cors = require('cors');
+
 // Creates a client
 const client = new vision.ImageAnnotatorClient({
   keyFilename: '../SERVICE-KEY.json'
@@ -28,7 +26,6 @@ app.get("/", (req, res) => {
   });
 });
 
-let textDetected = [];
 let total = 0;
 
 app.use(cors());
@@ -54,9 +51,6 @@ app.get('/getData', function (req, res) {
     .catch(err => {
       console.error('ERROR:', err);
     });
-
-
-
 })
 
 app.listen(PORT, () => {
